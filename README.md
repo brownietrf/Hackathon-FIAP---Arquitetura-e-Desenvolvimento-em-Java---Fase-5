@@ -119,8 +119,9 @@ A aplicação estará disponível em: `http://localhost:8080`
 
 ### 4. Acesse a documentação da API
 
-- **Swagger UI**: http://localhost:8080/swagger-ui.html
-- **OpenAPI JSON**: http://localhost:8080/api-docs
+- **Swagger UI (legacy)**: http://localhost:8080/swagger-ui.html
+- **Swagger UI (current)**: http://localhost:8080/swagger-ui/index.html
+- **OpenAPI JSON**: http://localhost:8080/v3/api-docs
 
 ---
 

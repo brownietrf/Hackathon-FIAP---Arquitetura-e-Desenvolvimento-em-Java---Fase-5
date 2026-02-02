@@ -1,0 +1,7 @@
+<h2>Pacientes</h2>
+<a routerLink="/pacientes/novo">Novo paciente</a>
+<ul>
+  <li *ngFor="let p of pacientes">
+    <a [routerLink]="['/pacientes', p.id]">{{ p.nome }} - {{ p.cpf }}</a>
+  </li>
+</ul>

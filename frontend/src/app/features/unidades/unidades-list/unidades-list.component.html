@@ -1,0 +1,8 @@
+<h2>Unidades de Saúde</h2>
+<mat-card *ngFor="let u of unidades">
+  <mat-card-title>{{ u.nome }}</mat-card-title>
+  <mat-card-content>
+    CNES: {{ u.cnes }}<br>
+    {{ u.endereco }} - {{ u.cidade }}
+  </mat-card-content>
+</mat-card>

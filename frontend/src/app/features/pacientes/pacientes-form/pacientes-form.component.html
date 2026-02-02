@@ -1,0 +1,7 @@
+<h2>Paciente</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <label>Nome<input formControlName="nome"></label>
+  <label>CPF<input formControlName="cpf"></label>
+  <label>Cartão SUS<input formControlName="cartaoSus"></label>
+  <button type="submit">Salvar</button>
+</form>
