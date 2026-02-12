@@ -250,6 +250,80 @@ O sistema implementa validações robustas:
 - Campos obrigatórios: Validação automática
 
 ---
+## SUS Agenda – Frontend
+
+Aplicação web desenvolvida durante um hackathon para gerenciamento de agendamentos do SUS.
+O sistema permite gerenciar pacientes, profissionais, unidades de saúde, horários disponíveis e agendamentos em uma interface simples e moderna inspirada no design do Meu SUS Digital / gov.br.
+
+### ✨ Visão Geral
+
+O SUS Agenda é uma Single Page Application construída com Angular 21, utilizando Standalone Components, Angular Material e a nova sintaxe de controle de fluxo do Angular (@for, @if).
+A aplicação consome uma API REST e oferece uma interface responsiva com foco em usabilidade e acessibilidade.
+
+O objetivo é simular uma plataforma real de agendamento utilizada por unidades de saúde.
+
+### 🚀 Principais Funcionalidades
+
+#### Gestão de pacientes
+- Listar / criar / editar pacientes
+- Buscar e visualizar detalhes
+
+#### Gestão de unidades de saúde
+- Listar unidades cadastradas
+- Visualizar CNES e endereço
+
+#### Gestão de profissionais
+- Listar profissionais e especialidades
+
+#### Gestão de agendamentos
+- Visualizar agendamentos realizados
+- Exibição em tabela com Angular Material
+- Horários disponíveis
+- Listagem de horários para agendamento
+
+#### Tecnologias Utilizadas
+
+- Angular 21
+- Standalone Components
+- Angular Material
+- RxJS
+- TypeScript
+- Angular Router
+- Reactive Forms
+
+#### Arquitetura
+
+O projeto segue uma estrutura baseada em features:
+```
+sus-agenda/frontend/src/app/
+├── core
+│   ├── models
+│   └── services
+├── features
+│   ├── agendamentos
+│   ├── horarios
+│   ├── listaespera
+│   ├── pacientes
+│   ├── profissionais
+│   └── unidades
+└── app.routes.ts
+```
+
+## ▶️ Executando o Projeto
+
+### Instale as dependências:
+```bash
+  npm install
+```
+#### Inicie o servidor de desenvolvimento:
+```bash
+  npm start
+```
+
+#### A aplicação estará disponível em:
+`http://localhost:4200`
+
+---
 
 ## 📈 Impacto Esperado
 
