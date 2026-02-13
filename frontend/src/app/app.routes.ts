@@ -72,5 +72,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/horarios/horarios-form/horarios-form.component')
         .then(m => m.HorariosFormComponent)},
+  {path: 'triagem',
+    loadComponent: () =>
+      import('./features/triagem/triagem.component')
+        .then(m => m.TriagemComponent)},
 ];
 
