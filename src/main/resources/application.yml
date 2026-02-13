@@ -22,6 +22,10 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
+#  ai:
+#    openai:
+#      api-key: ${OPENAI_API_KEY}
+
 server:
   port: ${PORT:8080}
 

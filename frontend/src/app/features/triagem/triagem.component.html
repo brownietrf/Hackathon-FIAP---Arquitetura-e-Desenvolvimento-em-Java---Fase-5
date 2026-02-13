@@ -1,0 +1,92 @@
+<div class="page">
+  <h2 class="page-title">Triagem Inteligente</h2>
+
+  <div class="description">
+    <p>Descreva seus sintomas e receberá sugestões de especialidades médicas que podem atendê-lo.</p>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <div class="form-card">
+    <div class="field">
+      <label for="sintomas">Descreva seus sintomas *</label>
+      <textarea
+        id="sintomas"
+        [(ngModel)]="sintomas"
+        rows="6"
+        placeholder="Ex: Estou com dor de cabeça forte há 3 dias, tontura e enjoo..."
+        [disabled]="carregando"
+      ></textarea>
+      <span class="hint">Seja o mais detalhado possível para melhores sugestões (mínimo 10 caracteres)</span>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" (click)="analisar()" [disabled]="carregando || !sintomas">
+        @if (carregando) {
+          <span class="loading">Analisando...</span>
+        } @else {
+          Analisar Sintomas
+        }
+      </button>
+      <button class="btn btn-secondary" (click)="limpar()" [disabled]="carregando">
+        Limpar
+      </button>
+    </div>
+  </div>
+
+  @if (resultado) {
+    <div class="resultado-card">
+      <div class="resultado-header">
+        <h3>Sugestões de Especialidades</h3>
+        <span class="metodo-badge" [class]="getMetodoClass()">
+          {{ resultado.metodoUtilizado === 'IA' ? '🤖 IA' : '📋 Regras' }}
+        </span>
+      </div>
+
+      <div class="especialidades-list">
+        @for (esp of resultado.especialidades; track esp.nome) {
+          <div class="especialidade-card">
+            <div class="especialidade-header">
+              <h4>{{ esp.nome }}</h4>
+              <div class="probabilidade-container">
+                <div class="probabilidade-bar">
+                  <div
+                    class="probabilidade-fill"
+                    [class]="getProbabilidadeClass(esp.probabilidade)"
+                    [style.width.%]="esp.probabilidade"
+                  ></div>
+                </div>
+                <span class="probabilidade-valor">{{ esp.probabilidade }}%</span>
+              </div>
+            </div>
+            <p class="justificativa">{{ esp.justificativa }}</p>
+          </div>
+        }
+      </div>
+
+      <div class="aviso-box">
+        <div class="aviso-icon">⚠️</div>
+        <div class="aviso-text">
+          <strong>Importante:</strong> {{ resultado.aviso }}
+        </div>
+      </div>
+
+      <div class="proximos-passos">
+        <h4>Próximos Passos</h4>
+        <p>Para agendar uma consulta com uma das especialidades sugeridas:</p>
+        <ol>
+          <li>Verifique as unidades de saúde disponíveis</li>
+          <li>Consulte os profissionais e horários</li>
+          <li>Realize o agendamento da sua consulta</li>
+        </ol>
+        <a routerLink="/agendamentos/novo" class="btn btn-agendar">
+          Agendar Consulta
+        </a>
+      </div>
+    </div>
+  }
+</div>
