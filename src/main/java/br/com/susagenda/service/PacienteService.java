@@ -103,7 +103,7 @@ public class PacienteService {
 
     @Transactional(readOnly = true)
     public List<PacienteResponse> listarTodos() {
-        return pacienteRepository.findByAtivoTrue().stream()
+        return pacienteRepository.findAll().stream()
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }

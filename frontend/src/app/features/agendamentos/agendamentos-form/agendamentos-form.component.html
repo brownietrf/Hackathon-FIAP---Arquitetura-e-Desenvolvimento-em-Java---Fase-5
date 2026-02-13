@@ -1,0 +1,73 @@
+<div class="page">
+  <h2 class="page-title">Agendamento</h2>
+
+  @if (successMessage) {
+    <div class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <form class="form-card" [formGroup]="form" (ngSubmit)="save()">
+    <div class="field">
+      <label for="pacienteId">Paciente *</label>
+      <select id="pacienteId" formControlName="pacienteId">
+        <option value="">Selecione...</option>
+        @let pacientes = pacientes$ | async;
+        @if (pacientes) {
+          @for (p of pacientes; track p.id) {
+            <option [value]="p.id">{{ p.nome }} - {{ p.cpf }}</option>
+          }
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="profissionalId">Profissional *</label>
+      <select id="profissionalId" formControlName="profissionalId">
+        <option value="">Selecione...</option>
+        @let profissionais = profissionais$ | async;
+        @if (profissionais) {
+          @for (p of profissionais; track p.id) {
+            <option [value]="p.id">{{ p.nome }} - {{ p.especialidade }}</option>
+          }
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="dataAgendamento">Data *</label>
+      <input id="dataAgendamento" type="date" formControlName="dataAgendamento" />
+    </div>
+
+    <div class="field">
+      <label for="horaAgendamento">Hora *</label>
+      <input id="horaAgendamento" type="time" formControlName="horaAgendamento" />
+    </div>
+
+    <div class="field">
+      <label for="tipoAtendimento">Tipo de Atendimento</label>
+      <select id="tipoAtendimento" formControlName="tipoAtendimento">
+        @for (tipo of tiposAtendimento; track tipo) {
+          <option [value]="tipo">{{ tipo }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="observacoes">Observações</label>
+      <textarea id="observacoes" formControlName="observacoes" rows="3"></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary" type="submit" [disabled]="form.invalid">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>

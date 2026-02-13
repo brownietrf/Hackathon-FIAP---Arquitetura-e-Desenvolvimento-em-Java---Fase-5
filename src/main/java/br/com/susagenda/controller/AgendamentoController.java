@@ -29,6 +29,14 @@ public class AgendamentoController {
 
     private final AgendamentoService agendamentoService;
 
+    @GetMapping
+    @Operation(summary = "Listar todos os agendamentos", description = "Retorna todos os agendamentos cadastrados no sistema")
+    @ApiResponse(responseCode = "200", description = "Lista de agendamentos retornada com sucesso")
+    public ResponseEntity<List<AgendamentoResponse>> listarTodos() {
+        List<AgendamentoResponse> agendamentos = agendamentoService.listarTodos();
+        return ResponseEntity.ok(agendamentos);
+    }
+
     @PostMapping
     @Operation(summary = "Criar agendamento", description = "Realiza um novo agendamento de consulta ou exame")
     @ApiResponses(value = {

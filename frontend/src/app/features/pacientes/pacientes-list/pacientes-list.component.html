@@ -5,20 +5,34 @@
     <a class="btn-primary" routerLink="/pacientes/novo">Novo paciente</a>
   </div>
 
-  @let pacientes = pacientes$ | async; @if (!pacientes) {
-  <p class="status">Carregando...</p>
-  } @else if (pacientes.length === 0) {
-  <p class="status">Nenhum paciente encontrado</p>
+  @if (!pacientes || pacientes.length === 0) {
+    <p class="status">Nenhum paciente encontrado</p>
   } @else {
-  <ul class="list">
-    @for (p of pacientes; track p.id) {
-    <li class="card">
-      <a [routerLink]="['/pacientes', p.id]" class="card-link">
-        <span class="name">{{ p.nome }}</span>
-        <span class="cpf">{{ p.cpf }}</span>
-      </a>
-    </li>
-    }
-  </ul>
+    <ul class="list">
+      @for (p of pacientes; track p.id) {
+        <li class="card" [class.inativo]="!p.ativo">
+          <a [routerLink]="['/pacientes', p.id]" class="card-link">
+            <div class="card-content">
+              <span class="name">{{ p.nome }}</span>
+              <span class="cpf">{{ p.cpf }}</span>
+              @if (!p.ativo) {
+                <span class="badge-inativo">Inativo</span>
+              }
+            </div>
+          </a>
+          <div class="card-actions">
+            @if (p.ativo) {
+              <button class="btn-toggle btn-desativar" (click)="desativar(p.id)">
+                Desativar
+              </button>
+            } @else {
+              <button class="btn-toggle btn-ativar" (click)="ativar(p.id)">
+                Ativar
+              </button>
+            }
+          </div>
+        </li>
+      }
+    </ul>
   }
 </div>

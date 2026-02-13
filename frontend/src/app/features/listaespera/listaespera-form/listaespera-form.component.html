@@ -1,0 +1,52 @@
+<div class="page">
+  <h2 class="page-title">Adicionar à Lista de Espera</h2>
+
+  <form class="form-card" [formGroup]="form" (ngSubmit)="save()">
+    <div class="field">
+      <label for="pacienteId">Paciente *</label>
+      <select id="pacienteId" formControlName="pacienteId">
+        <option value="">Selecione...</option>
+        @let pacientes = pacientes$ | async;
+        @if (pacientes) {
+          @for (p of pacientes; track p.id) {
+            <option [value]="p.id">{{ p.nome }} - {{ p.cpf }}</option>
+          }
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="especialidade">Especialidade *</label>
+      <select id="especialidade" formControlName="especialidade">
+        <option value="">Selecione...</option>
+        @for (esp of especialidades; track esp) {
+          <option [value]="esp">{{ esp.replace('_', ' ') }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="unidadeSaudePreferidaId">Unidade de Saúde Preferida</label>
+      <select id="unidadeSaudePreferidaId" formControlName="unidadeSaudePreferidaId">
+        <option value="">Selecione...</option>
+        @let unidades = unidades$ | async;
+        @if (unidades) {
+          @for (u of unidades; track u.id) {
+            <option [value]="u.id">{{ u.nome }}</option>
+          }
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="observacoes">Observações</label>
+      <textarea id="observacoes" formControlName="observacoes" rows="3"></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary" type="submit" [disabled]="form.invalid">
+        Adicionar
+      </button>
+    </div>
+  </form>
+</div>

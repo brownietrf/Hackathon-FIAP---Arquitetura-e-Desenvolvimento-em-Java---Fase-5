@@ -1,14 +1,21 @@
 export interface ProfissionalResponse {
   id: number;
   nome: string;
-  crm?: string;
+  cpf?: string;
+  registroProfissional?: string;
   especialidade?: string;
-  unidadeId?: number;
+  telefone?: string;
+  email?: string;
+  unidadeSaudeId?: number;
+  ativo?: boolean;
 }
 
 export interface ProfissionalRequest {
   nome: string;
-  crm?: string;
+  cpf?: string;
+  registroProfissional?: string;
   especialidade?: string;
-  unidadeId?: number;
+  telefone?: string;
+  email?: string;
+  unidadeSaudeId?: number;
 }

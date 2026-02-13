@@ -1,22 +1,37 @@
 <div class="page">
   <h2 class="page-title">Profissionais</h2>
 
-  <div class="list-card">
-    @let profissionais = profissionais$ | async;
+  <div class="actions">
+    <a class="btn-primary" routerLink="/profissionais/novo">Novo profissional</a>
+  </div>
 
-    @if (!profissionais) {
-      <p class="status">Carregando...</p>
-    }
-    @else if (profissionais.length === 0) {
+  <div class="list-card">
+    @if (!profissionais || profissionais.length === 0) {
       <p class="status">Nenhum profissional encontrado</p>
-    }
-    @else {
+    } @else {
       <mat-list>
         @for (p of profissionais; track p.id) {
-          <mat-list-item class="list-item">
+          <mat-list-item class="list-item" [class.inativo]="!p.ativo">
             <div class="item-content">
-              <span class="item-title">{{ p.nome }}</span>
+              <span class="item-title">
+                {{ p.nome }}
+                @if (!p.ativo) {
+                  <span class="badge-inativo">Inativo</span>
+                }
+              </span>
               <span class="item-subtitle">{{ p.especialidade }}</span>
+            </div>
+            <div class="item-actions">
+              <a [routerLink]="['/profissionais', p.id]" class="btn-edit">Editar</a>
+              @if (p.ativo) {
+                <button class="btn-toggle btn-desativar" (click)="desativar(p.id)">
+                  Desativar
+                </button>
+              } @else {
+                <button class="btn-toggle btn-ativar" (click)="ativar(p.id)">
+                  Ativar
+                </button>
+              }
             </div>
           </mat-list-item>
         }

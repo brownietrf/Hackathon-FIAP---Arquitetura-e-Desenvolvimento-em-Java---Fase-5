@@ -20,8 +20,6 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
     boolean existsByCartaoSus(String cartaoSus);
 
-    List<Paciente> findByAtivoTrue();
-
     @Query("SELECT p FROM Paciente p WHERE LOWER(p.nome) LIKE LOWER(CONCAT('%', :nome, '%'))")
     List<Paciente> findByNomeContaining(@Param("nome") String nome);
 

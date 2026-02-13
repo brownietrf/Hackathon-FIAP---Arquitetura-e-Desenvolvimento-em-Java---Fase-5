@@ -30,10 +30,10 @@ export class PacienteService {
   }
 
   desativar(id: number) {
-    return this.http.patch(`${this.base}/${id}/desativar`, {});
+    return this.http.patch<PacienteResponse>(`${this.base}/${id}/desativar`, {});
   }
 
   ativar(id: number) {
-    return this.http.patch(`${this.base}/${id}/ativar`, {});
+    return this.http.patch<PacienteResponse>(`${this.base}/${id}/ativar`, {});
   }
 }

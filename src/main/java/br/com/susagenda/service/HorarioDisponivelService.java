@@ -83,6 +83,14 @@ public class HorarioDisponivelService {
     }
 
     @Transactional(readOnly = true)
+    public List<HorarioDisponivelResponse> listarTodos() {
+        log.info("Listando todos os horários disponíveis");
+        return horarioDisponivelRepository.findAll().stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public List<HorarioDisponivelResponse> listarPorProfissional(Long profissionalId) {
         return horarioDisponivelRepository.findByProfissionalIdAndAtivoTrue(profissionalId).stream()
                 .map(this::toResponse)

@@ -158,6 +158,14 @@ public class AgendamentoService {
     }
 
     @Transactional(readOnly = true)
+    public List<AgendamentoResponse> listarTodos() {
+        log.info("Listando todos os agendamentos");
+        return agendamentoRepository.findAll().stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public List<AgendamentoResponse> buscarPorPaciente(Long pacienteId) {
         return agendamentoRepository.findByPacienteId(pacienteId).stream()
                 .map(this::toResponse)

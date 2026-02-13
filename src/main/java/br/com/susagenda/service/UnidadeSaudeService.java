@@ -94,7 +94,7 @@ public class UnidadeSaudeService {
 
     @Transactional(readOnly = true)
     public List<UnidadeSaudeResponse> listarTodas() {
-        return unidadeSaudeRepository.findByAtivoTrue().stream()
+        return unidadeSaudeRepository.findAll().stream()
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }

@@ -24,6 +24,14 @@ public class HorarioDisponivelController {
 
     private final HorarioDisponivelService horarioDisponivelService;
 
+    @GetMapping
+    @Operation(summary = "Listar todos os horários disponíveis", description = "Retorna todos os horários cadastrados no sistema")
+    @ApiResponse(responseCode = "200", description = "Lista de horários retornada com sucesso")
+    public ResponseEntity<List<HorarioDisponivelResponse>> listarTodos() {
+        List<HorarioDisponivelResponse> horarios = horarioDisponivelService.listarTodos();
+        return ResponseEntity.ok(horarios);
+    }
+
     @PostMapping
     @Operation(summary = "Cadastrar horário disponível", description = "Cadastra um novo horário de atendimento para um profissional")
     @ApiResponses(value = {

@@ -26,7 +26,16 @@ export class PacientesFormComponent implements OnInit {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       cpf: ['', Validators.required],
-      cartaoSus: ['', Validators.required]
+      cartaoSus: ['', Validators.required],
+      dataNascimento: [''],
+      telefone: [''],
+      email: [''],
+      endereco: [''],
+      bairro: [''],
+      cidade: [''],
+      estado: [''],
+      cep: [''],
+      prioridade: [0]
     });
   }
 

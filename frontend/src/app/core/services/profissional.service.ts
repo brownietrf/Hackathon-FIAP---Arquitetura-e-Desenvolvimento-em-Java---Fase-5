@@ -25,6 +25,14 @@ export class ProfissionalService {
     return this.http.put<ProfissionalResponse>(`${this.base}/${id}`, request);
   }
 
+  desativar(id: number) {
+    return this.http.patch<ProfissionalResponse>(`${this.base}/${id}/desativar`, {});
+  }
+
+  ativar(id: number) {
+    return this.http.patch<ProfissionalResponse>(`${this.base}/${id}/ativar`, {});
+  }
+
   buscarPorEspecialidadeEUnidade(especialidade: string, unidadeId: number) {
     return this.http.get<ProfissionalResponse[]>(`${this.base}/buscar?especialidade=${encodeURIComponent(especialidade)}&unidadeId=${unidadeId}`);
   }

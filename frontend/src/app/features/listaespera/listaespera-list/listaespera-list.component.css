@@ -1,0 +1,229 @@
+/* Card da lista */
+.list-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 0;
+  max-width: 100%;
+}
+
+/* Estados (loading / vazio) */
+.status {
+  padding: 16px 24px;
+  color: #546e7a;
+  font-size: 0.95rem;
+}
+
+/* Item da lista */
+.list-item {
+  padding: 12px 24px;
+  cursor: default;
+}
+
+/* Remove efeito Material exagerado */
+.list-item:hover {
+  background-color: #f5f9f8;
+}
+
+/* Conteúdo do item */
+.item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nome */
+.item-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1b3a4b;
+}
+
+/* Especialidade */
+.item-subtitle {
+  font-size: 0.85rem;
+  color: #607d8b;
+  margin-top: 2px;
+}
+
+/* Ajuste Material default */
+mat-list {
+  padding: 0;
+}
+
+mat-list-item {
+  height: auto !important;
+}
+
+/* Actions */
+.actions {
+  margin-bottom: 24px;
+}
+
+/* Primary button */
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #006b5e;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #00564c;
+}
+
+/* Filters card */
+.filters-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.filters-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1b3a4b;
+  margin: 0 0 16px 0;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #455a64;
+  margin-bottom: 6px;
+}
+
+.filter-field input,
+.filter-field select {
+  padding: 8px 12px;
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.filter-field input:focus,
+.filter-field select:focus {
+  outline: none;
+  border-color: #006b5e;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-secondary {
+  padding: 8px 16px;
+  background-color: #607d8b;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #546e7a;
+}
+
+/* Item styling */
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.item-id {
+  font-size: 0.75rem;
+  color: #90a4ae;
+  font-weight: 500;
+}
+
+.item-info {
+  font-size: 0.8rem;
+  color: #607d8b;
+  margin-top: 4px;
+}
+
+.badge-atendido {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.item-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: 16px;
+}
+
+.btn-action {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #45a049;
+}
+
+.btn-danger {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #da190b;
+}
+
+/* Adjust list item layout */
+mat-list-item {
+  height: auto !important;
+  display: flex;
+  align-items: flex-start !important;
+  padding: 16px 24px !important;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}

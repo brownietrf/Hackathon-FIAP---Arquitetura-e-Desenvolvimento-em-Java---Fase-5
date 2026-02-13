@@ -119,6 +119,14 @@ public class ListaEsperaService {
     }
 
     @Transactional(readOnly = true)
+    public List<ListaEsperaResponse> listarTodos() {
+        log.info("Listando todas as entradas da lista de espera");
+        return listaEsperaRepository.findAll().stream()
+                .map(le -> toResponse(le, calcularPosicaoNaFila(le)))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public long contarPacientesNaFila(Especialidade especialidade) {
         return listaEsperaRepository.countPacientesNaFila(especialidade);
     }

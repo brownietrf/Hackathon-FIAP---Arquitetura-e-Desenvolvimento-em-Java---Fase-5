@@ -21,8 +21,6 @@ public interface ProfissionalRepository extends JpaRepository<Profissional, Long
 
     boolean existsByRegistroProfissional(String registroProfissional);
 
-    List<Profissional> findByAtivoTrue();
-
     List<Profissional> findByEspecialidade(Especialidade especialidade);
 
     List<Profissional> findByEspecialidadeAndAtivoTrue(Especialidade especialidade);

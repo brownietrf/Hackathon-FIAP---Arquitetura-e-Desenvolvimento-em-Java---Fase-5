@@ -8,6 +8,10 @@ export class AgendamentoService {
 
   constructor(private http: HttpClient) {}
 
+  list() {
+    return this.http.get<AgendamentoResponse[]>(this.base);
+  }
+
   create(request: AgendamentoRequest) {
     return this.http.post<AgendamentoResponse>(this.base, request);
   }

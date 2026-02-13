@@ -18,6 +18,11 @@
   transition: background-color 0.15s ease;
 }
 
+.unit-card.inativo {
+  background-color: #fafafa;
+  opacity: 0.7;
+}
+
 /* Hover sutil */
 .unit-card:hover {
   background-color: #f5f9f8;
@@ -52,4 +57,80 @@
 /* Remove padding padrão estranho */
 mat-card {
   padding: 0;
+}
+
+/* Actions */
+.actions {
+  margin-bottom: 24px;
+}
+
+/* Primary button */
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #006b5e;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #00564c;
+}
+
+/* Edit button */
+.btn-edit {
+  color: #006b5e;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.btn-edit:hover {
+  color: #00564c;
+  text-decoration: underline;
+}
+
+/* Badge inativo */
+.badge-inativo {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #f44336;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.btn-toggle {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-desativar {
+  background-color: #ff9800;
+  color: white;
+}
+
+.btn-desativar:hover {
+  background-color: #f57c00;
+}
+
+.btn-ativar {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-ativar:hover {
+  background-color: #45a049;
 }

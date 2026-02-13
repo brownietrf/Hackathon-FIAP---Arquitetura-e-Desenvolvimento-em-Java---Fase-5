@@ -1,0 +1,54 @@
+<div class="page">
+  <h2 class="page-title">Horário Disponível</h2>
+
+  <form class="form-card" [formGroup]="form" (ngSubmit)="save()">
+    <div class="field">
+      <label for="profissionalId">Profissional *</label>
+      <select id="profissionalId" formControlName="profissionalId">
+        <option value="">Selecione...</option>
+        @let profissionais = profissionais$ | async;
+        @if (profissionais) {
+          @for (p of profissionais; track p.id) {
+            <option [value]="p.id">{{ p.nome }} - {{ p.especialidade }}</option>
+          }
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="diaSemana">Dia da Semana *</label>
+      <select id="diaSemana" formControlName="diaSemana">
+        <option value="">Selecione...</option>
+        @for (dia of diasSemana; track dia.value) {
+          <option [value]="dia.value">{{ dia.label }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="horaInicio">Hora de Início *</label>
+      <input id="horaInicio" type="time" formControlName="horaInicio" />
+    </div>
+
+    <div class="field">
+      <label for="horaFim">Hora de Fim *</label>
+      <input id="horaFim" type="time" formControlName="horaFim" />
+    </div>
+
+    <div class="field">
+      <label for="duracaoConsultaMinutos">Duração da Consulta (minutos) *</label>
+      <input id="duracaoConsultaMinutos" type="number" formControlName="duracaoConsultaMinutos" min="15" step="15" />
+    </div>
+
+    <div class="field">
+      <label for="vagasPorHorario">Vagas por Horário *</label>
+      <input id="vagasPorHorario" type="number" formControlName="vagasPorHorario" min="1" />
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary" type="submit" [disabled]="form.invalid">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>

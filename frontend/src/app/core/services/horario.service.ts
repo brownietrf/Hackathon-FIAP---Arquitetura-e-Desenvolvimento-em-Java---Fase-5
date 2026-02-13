@@ -8,6 +8,10 @@ export class HorarioService {
 
   constructor(private http: HttpClient) {}
 
+  list() {
+    return this.http.get<HorarioDisponivelResponse[]>(this.base);
+  }
+
   create(request: HorarioDisponivelRequest) {
     return this.http.post<HorarioDisponivelResponse>(this.base, request);
   }
@@ -17,4 +21,12 @@ export class HorarioService {
   }
 
   get(id: number) { return this.http.get<HorarioDisponivelResponse>(`${this.base}/${id}`); }
+
+  desativar(id: number) {
+    return this.http.patch<HorarioDisponivelResponse>(`${this.base}/${id}/desativar`, {});
+  }
+
+  ativar(id: number) {
+    return this.http.patch<HorarioDisponivelResponse>(`${this.base}/${id}/ativar`, {});
+  }
 }

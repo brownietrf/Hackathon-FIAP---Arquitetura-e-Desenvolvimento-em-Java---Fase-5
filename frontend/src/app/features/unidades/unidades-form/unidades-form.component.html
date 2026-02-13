@@ -1,5 +1,5 @@
 <div class="page">
-  <h2 class="page-title">Paciente</h2>
+  <h2 class="page-title">Unidade de Saúde</h2>
 
   <form class="form-card" [formGroup]="form" (ngSubmit)="save()">
     <div class="field">
@@ -8,28 +8,8 @@
     </div>
 
     <div class="field">
-      <label for="cpf">CPF *</label>
-      <input id="cpf" type="text" formControlName="cpf" />
-    </div>
-
-    <div class="field">
-      <label for="cartaoSus">Cartão SUS *</label>
-      <input id="cartaoSus" type="text" formControlName="cartaoSus" />
-    </div>
-
-    <div class="field">
-      <label for="dataNascimento">Data de Nascimento</label>
-      <input id="dataNascimento" type="date" formControlName="dataNascimento" />
-    </div>
-
-    <div class="field">
-      <label for="telefone">Telefone</label>
-      <input id="telefone" type="text" formControlName="telefone" />
-    </div>
-
-    <div class="field">
-      <label for="email">Email</label>
-      <input id="email" type="email" formControlName="email" />
+      <label for="cnes">CNES *</label>
+      <input id="cnes" type="text" formControlName="cnes" />
     </div>
 
     <div class="field">
@@ -58,13 +38,13 @@
     </div>
 
     <div class="field">
-      <label for="prioridade">Prioridade</label>
-      <select id="prioridade" formControlName="prioridade">
-        <option value="0">Normal</option>
-        <option value="1">Idoso</option>
-        <option value="2">Gestante</option>
-        <option value="3">Deficiente</option>
-      </select>
+      <label for="telefone">Telefone</label>
+      <input id="telefone" type="text" formControlName="telefone" />
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
     </div>
 
     <div class="actions">

@@ -163,7 +163,7 @@ class PacienteServiceTest {
                 .createdAt(LocalDateTime.now())
                 .build();
 
-        when(pacienteRepository.findByAtivoTrue()).thenReturn(List.of(paciente, paciente2));
+        when(pacienteRepository.findAll()).thenReturn(List.of(paciente, paciente2));
 
         List<PacienteResponse> pacientes = pacienteService.listarTodos();
 

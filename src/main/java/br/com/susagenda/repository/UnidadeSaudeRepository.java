@@ -16,8 +16,6 @@ public interface UnidadeSaudeRepository extends JpaRepository<UnidadeSaude, Long
 
     boolean existsByCnes(String cnes);
 
-    List<UnidadeSaude> findByAtivoTrue();
-
     List<UnidadeSaude> findByCidadeAndAtivoTrue(String cidade);
 
     @Query("SELECT u FROM UnidadeSaude u WHERE LOWER(u.nome) LIKE LOWER(CONCAT('%', :nome, '%')) AND u.ativo = true")

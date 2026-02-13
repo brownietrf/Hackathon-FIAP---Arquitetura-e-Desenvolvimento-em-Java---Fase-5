@@ -1,22 +1,23 @@
 <div class="page">
   <h2 class="page-title">Unidades de Saúde</h2>
 
-  <div class="list-card">
-    @let unidades = unidades$ | async;
+  <div class="actions">
+    <a class="btn-primary" routerLink="/unidades/novo">Nova unidade</a>
+  </div>
 
-    @if (!unidades) {
-      <p class="status">Carregando...</p>
-    }
-    @else if (unidades.length === 0) {
+  <div class="list-card">
+    @if (!unidades || unidades.length === 0) {
       <p class="status">Nenhuma unidade encontrada</p>
-    }
-    @else {
+    } @else {
       <ul class="cards-list">
         @for (u of unidades; track u.id) {
           <li class="card-item">
-            <mat-card class="unit-card">
+            <mat-card class="unit-card" [class.inativo]="!u.ativo">
               <mat-card-title class="unit-title">
                 {{ u.nome }}
+                @if (!u.ativo) {
+                  <span class="badge-inativo">Inativo</span>
+                }
               </mat-card-title>
 
               <mat-card-content class="unit-content">
@@ -27,6 +28,19 @@
                   {{ u.endereco }} – {{ u.cidade }}
                 </div>
               </mat-card-content>
+
+              <mat-card-actions>
+                <a [routerLink]="['/unidades', u.id]" class="btn-edit">Editar</a>
+                @if (u.ativo) {
+                  <button class="btn-toggle btn-desativar" (click)="desativar(u.id)">
+                    Desativar
+                  </button>
+                } @else {
+                  <button class="btn-toggle btn-ativar" (click)="ativar(u.id)">
+                    Ativar
+                  </button>
+                }
+              </mat-card-actions>
             </mat-card>
           </li>
         }

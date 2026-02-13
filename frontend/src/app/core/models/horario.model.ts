@@ -1,15 +1,20 @@
 export interface HorarioDisponivelRequest {
   profissionalId: number;
-  unidadeId: number;
-  data: string; // YYYY-MM-DD
-  hora: string; // HH:mm
+  diaSemana: string; // MONDAY, TUESDAY, etc
+  horaInicio: string; // HH:mm
+  horaFim: string; // HH:mm
+  duracaoConsultaMinutos: number;
+  vagasPorHorario: number;
 }
 
 export interface HorarioDisponivelResponse {
   id: number;
   profissionalId: number;
-  unidadeId: number;
-  data: string;
-  hora: string;
-  disponivel: boolean;
+  profissionalNome?: string;
+  diaSemana: string;
+  horaInicio: string;
+  horaFim: string;
+  duracaoConsultaMinutos: number;
+  vagasPorHorario: number;
+  ativo?: boolean;
 }

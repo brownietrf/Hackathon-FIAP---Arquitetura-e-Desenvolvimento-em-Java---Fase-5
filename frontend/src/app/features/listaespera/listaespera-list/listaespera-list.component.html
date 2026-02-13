@@ -1,4 +1,92 @@
-<h2>Lista de Espera</h2>
-<mat-list>
-  <mat-list-item *ngFor="let l of lista">Posição {{ l.posicao }} - Paciente {{ l.pacienteId }} - {{ l.especialidade }}</mat-list-item>
-</mat-list>
+<div class="page">
+  <h2 class="page-title">Lista de Espera</h2>
+
+  <div class="actions">
+    <a class="btn-primary" routerLink="/lista-espera/novo">Adicionar à lista</a>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters-card">
+    <h3 class="filters-title">Filtros</h3>
+    <div class="filters-grid">
+      <div class="filter-field">
+        <label for="filtroId">ID</label>
+        <input
+          id="filtroId"
+          type="text"
+          [(ngModel)]="filtroId"
+          (ngModelChange)="aplicarFiltros()"
+          placeholder="Digite o ID"
+        />
+      </div>
+
+      <div class="filter-field">
+        <label for="filtroEspecialidade">Especialidade</label>
+        <select
+          id="filtroEspecialidade"
+          [(ngModel)]="filtroEspecialidade"
+          (ngModelChange)="aplicarFiltros()"
+        >
+          <option value="">Todas</option>
+          @for (esp of especialidades; track esp) {
+            <option [value]="esp">{{ esp.replace('_', ' ') }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="filter-field">
+        <label for="filtroPacienteId">ID do Paciente</label>
+        <input
+          id="filtroPacienteId"
+          type="text"
+          [(ngModel)]="filtroPacienteId"
+          (ngModelChange)="aplicarFiltros()"
+          placeholder="Digite o ID do paciente"
+        />
+      </div>
+
+      <div class="filter-actions">
+        <button class="btn-secondary" (click)="limparFiltros()">Limpar filtros</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista -->
+  <div class="list-card">
+    @if (!listaFiltrada || listaFiltrada.length === 0) {
+      <p class="status">Nenhum paciente encontrado</p>
+    } @else {
+      <mat-list>
+        @for (l of listaFiltrada; track l.id) {
+          <mat-list-item class="list-item">
+            <div class="item-content">
+              <div class="item-header">
+                <span class="item-title">
+                  Posição {{ l.posicaoNaFila }} - {{ l.pacienteNome || 'Paciente ' + l.pacienteId }}
+                </span>
+                <span class="item-id">ID: {{ l.id }}</span>
+              </div>
+              <span class="item-subtitle">{{ l.especialidade.replace('_', ' ') }}</span>
+              @if (l.unidadeSaudePreferidaNome) {
+                <span class="item-info">Unidade preferida: {{ l.unidadeSaudePreferidaNome }}</span>
+              }
+            </div>
+            <div class="item-actions">
+              @if (l.atendido) {
+                <span class="badge-atendido">Atendido</span>
+              }
+              @else {
+                <button class="btn-action btn-success" (click)="marcarAtendido(l.id)">
+                  Marcar Atendido
+                </button>
+              }
+              <button class="btn-action btn-danger" (click)="remover(l.id)">
+                Remover
+              </button>
+            </div>
+          </mat-list-item>
+        }
+      </mat-list>
+    }
+  </div>
+</div>

@@ -1,20 +1,42 @@
 <div class="page">
   <h2 class="page-title">Horários Disponíveis</h2>
 
+  <div class="actions">
+    <a class="btn-primary" routerLink="/horarios/novo">Novo horário</a>
+  </div>
+
   <div class="list-card">
     @if (!horarios || horarios.length === 0) {
       <p class="status">Nenhum horário disponível</p>
     } @else {
       <mat-list class="sus-list">
         @for (h of horarios; track h.id) {
-          <mat-list-item class="sus-list-item">
+          <mat-list-item class="sus-list-item" [class.inativo]="!h.ativo">
             <div class="horario-info">
-              <span class="data">{{ h.data }}</span>
-              <span class="hora">{{ h.hora }}</span>
+              <span class="data">
+                {{ h.diaSemana }}
+                @if (!h.ativo) {
+                  <span class="badge-inativo">Inativo</span>
+                }
+              </span>
+              <span class="hora">{{ h.horaInicio }} - {{ h.horaFim }}</span>
             </div>
 
             <div class="profissional">
               Profissional {{ h.profissionalId }}
+            </div>
+
+            <div class="item-actions">
+              <a [routerLink]="['/horarios', h.id]" class="btn-edit">Editar</a>
+              @if (h.ativo) {
+                <button class="btn-toggle btn-desativar" (click)="desativar(h.id)">
+                  Desativar
+                </button>
+              } @else {
+                <button class="btn-toggle btn-ativar" (click)="ativar(h.id)">
+                  Ativar
+                </button>
+              }
             </div>
           </mat-list-item>
         }

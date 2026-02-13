@@ -83,7 +83,7 @@ public class ProfissionalService {
 
     @Transactional(readOnly = true)
     public List<ProfissionalResponse> listarTodos() {
-        return profissionalRepository.findByAtivoTrue().stream()
+        return profissionalRepository.findAll().stream()
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }

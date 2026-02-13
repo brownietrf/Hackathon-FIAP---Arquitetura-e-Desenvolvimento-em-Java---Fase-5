@@ -25,6 +25,14 @@ public class ListaEsperaController {
 
     private final ListaEsperaService listaEsperaService;
 
+    @GetMapping
+    @Operation(summary = "Listar todas as listas de espera", description = "Retorna todas as entradas da lista de espera")
+    @ApiResponse(responseCode = "200", description = "Lista de espera retornada com sucesso")
+    public ResponseEntity<List<ListaEsperaResponse>> listarTodos() {
+        List<ListaEsperaResponse> lista = listaEsperaService.listarTodos();
+        return ResponseEntity.ok(lista);
+    }
+
     @PostMapping
     @Operation(summary = "Adicionar à lista de espera", description = "Adiciona um paciente à lista de espera para uma especialidade")
     @ApiResponses(value = {

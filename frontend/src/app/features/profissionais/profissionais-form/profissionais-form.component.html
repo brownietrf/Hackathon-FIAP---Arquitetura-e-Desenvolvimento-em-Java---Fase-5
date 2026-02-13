@@ -1,0 +1,59 @@
+<div class="page">
+  <h2 class="page-title">Profissional de Saúde</h2>
+
+  <form class="form-card" [formGroup]="form" (ngSubmit)="save()">
+    <div class="field">
+      <label for="nome">Nome *</label>
+      <input id="nome" type="text" formControlName="nome" />
+    </div>
+
+    <div class="field">
+      <label for="cpf">CPF</label>
+      <input id="cpf" type="text" formControlName="cpf" />
+    </div>
+
+    <div class="field">
+      <label for="registroProfissional">Registro Profissional *</label>
+      <input id="registroProfissional" type="text" formControlName="registroProfissional" placeholder="Ex: CRM123456" />
+    </div>
+
+    <div class="field">
+      <label for="especialidade">Especialidade *</label>
+      <select id="especialidade" formControlName="especialidade">
+        <option value="">Selecione...</option>
+        @for (esp of especialidades; track esp) {
+          <option [value]="esp">{{ esp.replace('_', ' ') }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="telefone">Telefone</label>
+      <input id="telefone" type="text" formControlName="telefone" />
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+    </div>
+
+    <div class="field">
+      <label for="unidadeSaudeId">Unidade de Saúde *</label>
+      <select id="unidadeSaudeId" formControlName="unidadeSaudeId">
+        <option value="">Selecione...</option>
+        @let unidades = unidades$ | async;
+        @if (unidades) {
+          @for (u of unidades; track u.id) {
+            <option [value]="u.id">{{ u.nome }}</option>
+          }
+        }
+      </select>
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary" type="submit" [disabled]="form.invalid">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>

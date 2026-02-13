@@ -7,9 +7,10 @@ import {
   MatRow,
   MatTableModule,
 } from "@angular/material/table";
+import { RouterLink } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 import { AgendamentoResponse } from "../../../core/models/agendamento.model";
 import { AgendamentoService } from "../../../core/services/agendamento.service";
-import { Observable } from "rxjs";
 
 @Component({
   selector: "app-agendamentos-list",
@@ -22,19 +23,38 @@ import { Observable } from "rxjs";
     MatCell,
     MatHeaderRow,
     MatRow,
-    MatTableModule,
+    RouterLink,
+    FormsModule,
   ],
 })
 export class AgendamentosListComponent {
   agendamentos: AgendamentoResponse[] = [];
-  displayedColumns = ["id", "paciente"];
+  agendamentosFiltrados: AgendamentoResponse[] = [];
+  displayedColumns = ["id", "paciente", "profissional", "data", "hora", "status"];
+  filtroPacienteId: string = '';
 
-  constructor(private service: AgendamentoService,
+  constructor(
+    private service: AgendamentoService,
     private cdr: ChangeDetectorRef
   ) {
-    this.service.listByPaciente(1).subscribe((a) => {
-      this.agendamentos = a;
+    this.carregarLista();
+  }
+
+  carregarLista(): void {
+    this.service.list().subscribe((data) => {
+      this.agendamentos = data;
+      this.aplicarFiltro();
       this.cdr.detectChanges();
     });
+  }
+
+  aplicarFiltro(): void {
+    if (!this.filtroPacienteId) {
+      this.agendamentosFiltrados = this.agendamentos;
+    } else {
+      this.agendamentosFiltrados = this.agendamentos.filter(a =>
+        a.pacienteId.toString().includes(this.filtroPacienteId)
+      );
+    }
   }
 }

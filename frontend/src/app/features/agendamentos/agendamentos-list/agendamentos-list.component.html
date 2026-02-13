@@ -1,39 +1,78 @@
 <div class="page">
   <h2 class="page-title">Agendamentos</h2>
 
+  <div class="actions">
+    <a class="btn-primary" routerLink="/agendamentos/novo">Novo agendamento</a>
+  </div>
+
+  <div class="filters">
+    <div class="filter-field">
+      <label for="filtroPacienteId">Filtrar por ID do Paciente:</label>
+      <input
+        id="filtroPacienteId"
+        type="text"
+        [(ngModel)]="filtroPacienteId"
+        (ngModelChange)="aplicarFiltro()"
+        placeholder="Digite o ID do paciente"
+      />
+    </div>
+  </div>
+
   <div class="list-card">
-    @if (!agendamentos || agendamentos.length === 0) {
-    <ng-template #empty>
+    @if (!agendamentosFiltrados || agendamentosFiltrados.length === 0) {
       <p class="status">Nenhum agendamento encontrado</p>
-    </ng-template>
     } @else {
-    <mat-table class="sus-table" [dataSource]="agendamentos">
-      <!-- ID -->
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-        <mat-cell *matCellDef="let a">
-          {{ a.id }}
-        </mat-cell>
-      </ng-container>
+      <mat-table class="sus-table" [dataSource]="agendamentosFiltrados">
+        <!-- ID -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let a">{{ a.id }}</mat-cell>
+        </ng-container>
 
-      <!-- Paciente -->
-      <ng-container matColumnDef="paciente">
-        <mat-header-cell *matHeaderCellDef>Paciente</mat-header-cell>
-        <mat-cell *matCellDef="let a">
-          {{ a.pacienteNome }}
-        </mat-cell>
-      </ng-container>
+        <!-- Paciente -->
+        <ng-container matColumnDef="paciente">
+          <mat-header-cell *matHeaderCellDef>Paciente</mat-header-cell>
+          <mat-cell *matCellDef="let a">{{ a.pacienteNome }}</mat-cell>
+        </ng-container>
 
-      <mat-header-row
-        *matHeaderRowDef="displayedColumns"
-        class="sus-header-row"
-      ></mat-header-row>
+        <!-- Profissional -->
+        <ng-container matColumnDef="profissional">
+          <mat-header-cell *matHeaderCellDef>Profissional</mat-header-cell>
+          <mat-cell *matCellDef="let a">{{ a.profissionalNome }}</mat-cell>
+        </ng-container>
 
-      <mat-row
-        *matRowDef="let row; columns: displayedColumns"
-        class="sus-row"
-      ></mat-row>
-    </mat-table>
+        <!-- Data -->
+        <ng-container matColumnDef="data">
+          <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+          <mat-cell *matCellDef="let a">{{ a.dataAgendamento }}</mat-cell>
+        </ng-container>
+
+        <!-- Hora -->
+        <ng-container matColumnDef="hora">
+          <mat-header-cell *matHeaderCellDef>Hora</mat-header-cell>
+          <mat-cell *matCellDef="let a">{{ a.horaAgendamento }}</mat-cell>
+        </ng-container>
+
+        <!-- Status -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let a">
+            <span class="status-badge" [class]="'status-' + a.status.toLowerCase()">
+              {{ a.status }}
+            </span>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row
+          *matHeaderRowDef="displayedColumns"
+          class="sus-header-row"
+        ></mat-header-row>
+
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          class="sus-row"
+        ></mat-row>
+      </mat-table>
     }
   </div>
 </div>

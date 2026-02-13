@@ -25,6 +25,14 @@ export class UnidadeService {
     return this.http.put<UnidadeSaudeResponse>(`${this.base}/${id}`, request);
   }
 
+  desativar(id: number) {
+    return this.http.patch<UnidadeSaudeResponse>(`${this.base}/${id}/desativar`, {});
+  }
+
+  ativar(id: number) {
+    return this.http.patch<UnidadeSaudeResponse>(`${this.base}/${id}/ativar`, {});
+  }
+
   buscarPorNome(nome: string) {
     return this.http.get<UnidadeSaudeResponse[]>(`${this.base}/buscar?nome=${encodeURIComponent(nome)}`);
   }
